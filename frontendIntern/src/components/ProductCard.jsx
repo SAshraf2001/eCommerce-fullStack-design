@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 
-export default function ProductCard({ product, onViewDetails }) {
+export default function ProductCard({ product }) {
   const navigate = useNavigate();
   const { addToCart } = useCart();
   const { isAuthenticated } = useAuth();
@@ -27,7 +27,7 @@ export default function ProductCard({ product, onViewDetails }) {
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
       <div className="relative w-full bg-gray-100 aspect-square overflow-hidden">
         <img
-          src={product.image}
+          src={product.image || `https://placehold.co/400x400?text=${encodeURIComponent(product.name)}`}
           alt={product.name}
           className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
         />

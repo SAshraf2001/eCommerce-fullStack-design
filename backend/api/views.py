@@ -318,11 +318,13 @@ def login(request):
             status=status.HTTP_400_BAD_REQUEST
         )
 
-    user = get_object_or_404(User, username=username)
-    
-    if not user.check_password(password):
+    user = User.objects.filter(username=username).first()
+    if not user:
+        user = User.objects.filter(email=username).first()
+
+    if not user or not user.check_password(password):
         return Response(
-            {'error': 'Invalid credentials'},
+            {'error': 'Invalid username/email or password'},
             status=status.HTTP_401_UNAUTHORIZED
         )
 

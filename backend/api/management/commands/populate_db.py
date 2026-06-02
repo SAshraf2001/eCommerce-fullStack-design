@@ -24,7 +24,7 @@ class Command(BaseCommand):
             )
             categories[cat_data['name']] = category
             if created:
-                self.stdout.write(self.style.SUCCESS(f'✓ Created category: {category.name}'))
+                self.stdout.write(self.style.SUCCESS(f'+ Created category: {category.name}'))
 
         # Create sample products
         products_data = [
@@ -145,7 +145,7 @@ class Command(BaseCommand):
                 defaults={**prod_data, 'category': category}
             )
             if created:
-                self.stdout.write(self.style.SUCCESS(f'✓ Created product: {product.name}'))
+                self.stdout.write(self.style.SUCCESS(f'+ Created product: {product.name}'))
 
         # Create sample admin user
         if not User.objects.filter(username='admin').exists():
@@ -155,7 +155,7 @@ class Command(BaseCommand):
                 password='admin123'
             )
             Cart.objects.create(user=admin_user)
-            self.stdout.write(self.style.SUCCESS('✓ Created admin user (username: admin, password: admin123)'))
+            self.stdout.write(self.style.SUCCESS('+ Created admin user (username: admin, password: admin123)'))
 
         # Create sample test user
         if not User.objects.filter(username='testuser').exists():
@@ -165,6 +165,6 @@ class Command(BaseCommand):
                 password='testpass123'
             )
             Cart.objects.create(user=test_user)
-            self.stdout.write(self.style.SUCCESS('✓ Created test user (username: testuser, password: testpass123)'))
+            self.stdout.write(self.style.SUCCESS('+ Created test user (username: testuser, password: testpass123)'))
 
-        self.stdout.write(self.style.SUCCESS('\n✓ Database populated successfully!'))
+        self.stdout.write(self.style.SUCCESS('\n+ Database populated successfully!'))

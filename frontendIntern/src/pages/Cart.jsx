@@ -13,7 +13,7 @@ export default function Cart() {
     if (isAuthenticated) {
       fetchCart();
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, fetchCart]);
 
   if (!isAuthenticated) {
     return (

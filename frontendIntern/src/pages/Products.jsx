@@ -15,14 +15,24 @@ export default function Products() {
   }, []);
 
   useEffect(() => {
-    setLoading(true);
-    const params = { search: searchQuery, ordering: sortBy };
-    if (selectedCategory) params.category = selectedCategory;
-    
-    productsAPI.getAll(params)
-      .then(res => setProducts(res.data.results || res.data))
-      .finally(() => setLoading(false))
-      .catch(err => console.error(err));
+    let ignore = false;
+    const fetchProducts = async () => {
+      setLoading(true);
+      const params = { search: searchQuery, ordering: sortBy };
+      if (selectedCategory) params.category = selectedCategory;
+      
+      try {
+        const res = await productsAPI.getAll(params);
+        if (!ignore) setProducts(res.data.results || res.data);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        if (!ignore) setLoading(false);
+      }
+    };
+
+    fetchProducts();
+    return () => { ignore = true; };
   }, [searchQuery, selectedCategory, sortBy]);
 
   return (

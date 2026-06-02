@@ -1,5 +1,5 @@
-import { createContext, useContext, useState, useEffect } from 'react';
-import { cartAPI, productsAPI } from '../services/api';
+import { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import { cartAPI } from '../services/api';
 import { useAuth } from './AuthContext';
 
 const CartContext = createContext();
@@ -10,16 +10,7 @@ export const CartProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Fetch cart when user logs in
-  useEffect(() => {
-    if (isAuthenticated) {
-      fetchCart();
-    } else {
-      setCart(null);
-    }
-  }, [isAuthenticated]);
-
-  const fetchCart = async () => {
+  const fetchCart = useCallback(async () => {
     if (!isAuthenticated) return;
     try {
       setLoading(true);
@@ -32,7 +23,17 @@ export const CartProvider = ({ children }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [isAuthenticated]);
+
+  // Fetch cart when user logs in
+  useEffect(() => {
+    if (isAuthenticated) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      fetchCart();
+    } else {
+      setCart(null);
+    }
+  }, [isAuthenticated, fetchCart]);
 
   const addToCart = async (productId, quantity = 1) => {
     if (!isAuthenticated) {
@@ -65,6 +66,7 @@ export const CartProvider = ({ children }) => {
       setCart(response.data);
       return { success: true };
     } catch (err) {
+      console.error(err);
       setError('Failed to remove item from cart');
       return { success: false };
     } finally {
@@ -82,6 +84,7 @@ export const CartProvider = ({ children }) => {
       setCart(response.data);
       return { success: true };
     } catch (err) {
+      console.error(err);
       setError('Failed to update cart item');
       return { success: false };
     } finally {
@@ -99,6 +102,7 @@ export const CartProvider = ({ children }) => {
       setCart(response.data);
       return { success: true };
     } catch (err) {
+      console.error(err);
       setError('Failed to clear cart');
       return { success: false };
     } finally {
@@ -126,6 +130,7 @@ export const CartProvider = ({ children }) => {
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useCart = () => {
   const context = useContext(CartContext);
   if (!context) {
