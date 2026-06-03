@@ -8,3 +8,4 @@ PyJWT==2.8.0
 django-filter==23.4
 django-environ==0.13.0
 gunicorn==21.2.0
+whitenoise==6.6.0
