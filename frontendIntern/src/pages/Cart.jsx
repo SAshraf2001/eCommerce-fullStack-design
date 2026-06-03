@@ -4,6 +4,21 @@ import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { ordersAPI } from '../services/api';
 
+const fallbackImages = {
+  1: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&q=80', // Headphones
+  2: 'https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=800&q=80', // Laptop stand
+  3: 'https://images.unsplash.com/photo-1595225476474-87563907a212?w=800&q=80', // Keyboard
+  4: 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=800&q=80', // USB cable
+  5: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80', // T-Shirt
+  6: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=800&q=80', // Jeans
+  7: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80', // Running shoes
+  8: 'https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=800&q=80', // Yoga mat
+  9: 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=800&q=80', // Desk lamp
+  10: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&q=80', // Coffee maker
+  11: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&q=80', // Python book
+  12: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80', // Web dev book
+};
+
 export default function Cart() {
   const { cart, loading, removeFromCart, updateCartItem, clearCart, fetchCart } = useCart();
   const { isAuthenticated } = useAuth();
@@ -105,7 +120,7 @@ export default function Cart() {
                       <div className="grid grid-cols-1 sm:grid-cols-5 gap-4 items-start">
                         <div className="sm:col-span-2 flex gap-4">
                           <img
-                            src={item.product.image}
+                            src={item.product.image || fallbackImages[item.product.id] || `https://picsum.photos/seed/${item.product.id}/400/400`}
                             alt={item.product.name}
                             className="w-20 h-20 object-cover rounded-lg"
                           />
