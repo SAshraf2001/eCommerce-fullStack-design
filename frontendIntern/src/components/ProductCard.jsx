@@ -27,7 +27,7 @@ export default function ProductCard({ product }) {
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
       <div className="relative w-full bg-gray-100 aspect-square overflow-hidden">
         <img
-          src={product.image || `https://placehold.co/400x400?text=${encodeURIComponent(product.name)}`}
+          src={product.image || `https://picsum.photos/seed/${product.id}/400/400`}
           alt={product.name}
           className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
         />

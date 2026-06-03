@@ -35,8 +35,12 @@ export default function ProductDetail() {
     <main className="bg-gray-50 min-h-screen py-8">
       <div className="max-w-7xl mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white p-6 rounded-lg shadow">
-          <div>
-            <img src={product.image || `https://placehold.co/400x400?text=${encodeURIComponent(product.name)}`} alt={product.name} className="w-full rounded-lg" />
+          <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center">
+            <img 
+              src={product.image || `https://picsum.photos/seed/${product.id}/600/600`}
+              alt={product.name}
+              className="w-full h-full object-cover"
+            />
           </div>
 
           <div>
