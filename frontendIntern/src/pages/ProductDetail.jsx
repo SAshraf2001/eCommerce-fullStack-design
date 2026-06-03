@@ -6,16 +6,16 @@ import { useAuth } from '../context/AuthContext';
 
 const fallbackImages = {
   1: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&q=80', // Headphones
-  2: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=800&q=80', // Laptop stand
+  2: 'https://loremflickr.com/800/800/laptop?lock=2', // Laptop stand
   3: 'https://images.unsplash.com/photo-1595225476474-87563907a212?w=800&q=80', // Keyboard
-  4: 'https://images.unsplash.com/photo-1613524673199-a1fc16cc07ac?w=800&q=80', // USB cable
+  4: 'https://loremflickr.com/800/800/usb,cable?lock=4', // USB cable
   5: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80', // T-Shirt
   6: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=800&q=80', // Jeans
   7: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80', // Running shoes
   8: 'https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=800&q=80', // Yoga mat
   9: 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=800&q=80', // Desk lamp
   10: 'https://images.unsplash.com/photo-1517686469429-8bdb88b9f907?w=800&q=80', // Coffee maker
-  11: 'https://images.unsplash.com/photo-1526379095098-d400fd0bfce8?w=800&q=80', // Python book
+  11: 'https://loremflickr.com/800/800/programming,book?lock=11', // Python book
   12: 'https://images.unsplash.com/photo-1547658719-da2b51159128?w=800&q=80', // Web dev book
 };
 
